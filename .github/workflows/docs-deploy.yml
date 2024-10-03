@@ -3,6 +3,7 @@ name: deploy docs
 on:
   push:
     branches:
+      - master
       - main
 
 permissions:
@@ -15,20 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: install pipenv
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install pipenv
-
-      - name: lock package version
-        run: pipenv lock
-
-      - name: install packages
-        run: pipenv sync --dev
-
-      - name: copy swagger
-        run: |
-          cp -r -f ./swagger ./docs/docs/swagger
-
-      - run: pipenv shell mkdocs gh-deploy --force --config-file ./docs/mkdocs.yml
+          python-version: 3.9
+      - run: |
+          pip install mkdocs-material
+          pip install mkdocs-static-i18n[material]
+      - run: mkdocs gh-deploy --force --config-file ./docs/mkdocs.yml
