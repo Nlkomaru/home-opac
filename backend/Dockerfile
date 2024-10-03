@@ -28,7 +28,7 @@ EXPOSE 8080
 COPY --from=build /storage/ /app/storage/
 VOLUME /app/storage
 
-COPY --from=build /go/src/github.com/kstm-su/home-opac/backend/public /app/public
+COPY --from=build /go/src/github.com/nlkomaru/home-opac/backend/public /app/public
 
 COPY --from=build /home-opac ./
 
