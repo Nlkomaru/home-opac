@@ -38,6 +38,7 @@ jobs:
         uses: golangci/golangci-lint-action@v6
         with:
           version: v1.60
+          working-directory: "backend"
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
