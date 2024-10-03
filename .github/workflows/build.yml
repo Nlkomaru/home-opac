@@ -1,0 +1,41 @@
+name: Build docker image
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  push:
+    name: "home-opac:${{ matrix.tag }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        tag:
+          - backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+        with:
+          buildkitd-flags: --debug
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name : Add short sha
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | head -c7)" >> $GITHUB_ENV
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./${{ matrix.tag }}
+          file: ./${{ matrix.tag }}/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ghcr.io/nlkomaru/home-opac/${{ matrix.tag }}:latest
+            ghcr.io/nlkomaru/home-opac/${{ matrix.tag }}:${{ env.GITHUB_SHA_SHORT }}
+          cache-from: type=gha,scope=home-opac-${{ matrix.tag }}
+          cache-to: type=gha,mode=max,scope=home-opac-${{ matrix.tag }}

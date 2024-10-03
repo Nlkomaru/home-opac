@@ -1,0 +1,22 @@
+openapi: '3.0.2'
+info:
+  title: "home opac"
+  description: |
+    This is the API documentation for home opac.
+  license:
+    name: Creative Commons Zero v1.0 Universal
+    url: "https://creativecommons.org/publicdomain/zero/1.0/"
+  version: "1.0.0"
+
+servers:
+  - url: "http://localhost:8080"
+    description: "Local server"
+  - url: "https://api.example.com"
+    description: "Production server"
+
+
+
+paths:
+  /api/books
+
+

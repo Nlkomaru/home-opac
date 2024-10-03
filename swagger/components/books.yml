@@ -1,0 +1,4 @@
+BookData:
+  type: object
+  properties:
+    isbn:

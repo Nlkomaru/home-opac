@@ -1,0 +1,9 @@
+get:
+  summary: Get book info
+  responses:
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/common/profile-data.yml#/ProfileData'
+      description: "User information"
