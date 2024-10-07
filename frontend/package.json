@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -13,21 +14,24 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
+    "@ark-ui/react": "^4.1.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.3",
-    "@cloudflare/workers-types": "^4.20240925.0",
+    "@cloudflare/next-on-pages": "^1.13.5",
+    "@cloudflare/workers-types": "^4.20241004.0",
+    "@pandacss/dev": "^0.46.1",
+    "@park-ui/panda-preset": "^0.42.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
-    "eslint-plugin-next-on-pages": "^1.13.3",
+    "eslint-plugin-next-on-pages": "^1.13.5",
     "typescript": "^5",
-    "vercel": "^37.6.0",
-    "wrangler": "^3.79.0"
+    "vercel": "^37.6.1",
+    "wrangler": "^3.80.0"
   }
 }
