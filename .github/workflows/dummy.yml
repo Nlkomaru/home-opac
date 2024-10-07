@@ -1,0 +1,22 @@
+name: _always skipped
+on:
+  pull_request:
+
+jobs:
+  forntend_check:
+    name: Check pull request (Frontend)
+    runs-on: ubuntu-latest
+    if: ${{ false }}
+
+    steps:
+      - name: Pass
+        run: echo ok
+
+  backend_check:
+    name: Check pull request (Backend)
+    runs-on: ubuntu-latest
+    if: ${{ false }}
+
+    steps:
+      - name: Pass
+        run: echo ok
